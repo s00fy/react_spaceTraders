@@ -1,17 +1,18 @@
 // import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Fuel from './Fuel';
+// import Fuel from './Fuel';
 import Cargo from './Cargo';
 
 const ShipDetails = ({ship}) => {
 
-    // const [cargoShown, isCargoShown] = useState(true);
+    // const [cargoShown, setCargoShown] = useState(true);
     let fuelPercentage = 0;
     if (ship.fuel.capacity === 0 ) {
       fuelPercentage = 'undefined'; 
     }else{
       fuelPercentage = Math.round((ship.fuel.current * 100) / ship.fuel.capacity); 
     }
+    
 
     return (
       <>

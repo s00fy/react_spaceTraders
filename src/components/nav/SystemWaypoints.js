@@ -74,7 +74,7 @@ const SystemWaypoints = ({systemSymbol, shipLocation, status, shipSymbol, shipX,
       };
       try {
         const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
-        const data = await response.json();
+        await response.json();
       } catch (error) {
         console.error('Error fetching navigate info:', error);
       }
