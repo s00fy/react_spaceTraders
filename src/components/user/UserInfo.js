@@ -6,7 +6,7 @@ import './../../style/user.css';
 const UserInfo = () => {
   const auth = useAuthContext();
   const navigate = useNavigate();
-  const user = JSON.parse(auth.user);
+  const user = auth.user;
 
   const handleLogout = () => {
     auth.logout();

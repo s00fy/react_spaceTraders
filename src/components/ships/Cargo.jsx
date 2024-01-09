@@ -15,22 +15,22 @@ const Cargo = (props)=>{
     return(
         <>
         { cargo ? (
-         <td className='cargoCard__column'>
-         <div className='cargoCard__cargo'>
-           <p className='cargoCard__cargo__title'>Cargo</p>
-           <div className='cargoCard__cargo__progress'>
+         <>
+         <div className='cargoCard'>
+           <p className='cargoCard__title'>Cargo</p>
+           <div className='cargoCard__progress'>
              <label htmlFor='meter'> {cargo.units} / {cargo.capacity} </label>
              <progress min="0" max={cargo.capacity} value={cargo.units} ></progress>
            </div>
-           <div className='cargoCard__cargo__list'>
+           <div className='cargoCard__list'>
               { inventoryDisplay }
            </div>
          </div>
-       </td>
+       </>
       ) : (
-        <td>
+        <>
             Cargo loading...
-        </td>
+        </>
     )}
     </>)
 }

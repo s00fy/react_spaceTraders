@@ -1,13 +1,18 @@
 @import url('./main.css');
 
+
+.nav__content{
+    margin-bottom: 10rem;
+}
+
 .nav{
-    background: var(--black-bg);
     padding: 4rem 3rem 3rem 4rem;
     margin: 5rem auto;
     width: 80vw;
     border-radius: 1rem;
-    border: 2px solid var(--white);
     display: flex;
+    flex-direction: column;
+    border: 2px solid var(--white);
 }
 
 .nav__idColumn{
@@ -21,6 +26,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 4rem 0 ;
+}
+
+.nav__idColumn__name{
+    display: flex;
+    align-items: center;
 }
 
 .nav__id{
@@ -54,18 +64,48 @@
     padding: 2rem 0;    
 }
 
-.cargoCard__cargo{
-    margin:0;
-}
-
 .shipInfos__fm
 {
-    background-color: red;
-    padding: 2rem 4rem;
+    margin: 1.5rem 0;
+    background: var(--black-bg);
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    padding: 2rem 6rem;
     gap: 5rem;
+}
+
+.shipInfos__fm__txtCurrent{
+    padding-top: 2rem;
+    font-size: 1.3rem;
+}
+.shipInfos__fm__txtChange{
+    font-size: 1.3rem;
+    padding: 2rem 0 3rem 0;
 }
 
 .shipInfos__fm__btns{
     display: flex;
     justify-content: space-between;
+}
+
+/*
+    display wp infos 
+*/
+
+.nav__btns{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+}
+
+.nav__txt{
+    padding-bottom: 3rem;
+}
+
+/*
+    icons
+*/
+
+.good__icon{
+    color: var(--white);
 }

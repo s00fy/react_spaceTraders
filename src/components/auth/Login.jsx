@@ -52,7 +52,7 @@ const Login = () => {
             <label htmlFor="token">Your token :
             </label>
             <div className="formWrapper">
-                <input id="token" type="text" onChange={(e) => setToken(e.target.value)} name="token" placeholder="Get started ..."></input>
+                <input className='login__input' id="token" type="text" onChange={(e) => setToken(e.target.value)} name="token" placeholder="Get started ..."/>
                 <button onClick={handleLogin} type="submit">Go →</button>
             </div>
             {errorMessage && <p className='errorLogin'>{errorMessage}</p>}

@@ -1,26 +1,30 @@
 import '../../style/fuel.css';
+import { useAuthContext } from '../auth/authContext';
 
-const Fuel = (props)=>{
+const Fuel = ({fuel})=>{
+    const auth = useAuthContext();
 
-    const Fuel = props.fuel;
+    console.log(auth);
+    console.log(auth.user);
+    console.log(auth.user.credits);
 
     return(
         <>
-        { Fuel ? (
-        <td className='fuel'>
+        { fuel ? (
+        <>
         <div className='fuel__card'>
           <p className='fuel__title'>Fuel</p>
           <div className='fuel__progress'>
-            <div className="semi-donut margin" /* style="--percentage :20; --fill: #FF3D00 ;" */>
-            {Fuel.current}
-            </div>
+            <label htmlFor='meter'> {fuel.current} / {fuel.capacity} </label>
+            <progress min="0" max={fuel.capacity} value={fuel.current} ></progress>
           </div>
+
         </div>
-      </td>
+      </>
       ) : (
-        <td>
+        <>
         Fuel loading...
-        </td>
+        </>
     )}
     </>)
 }

@@ -4,9 +4,8 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [user, setUser] = useState([]);
   const [isValid, setIsValid] = useState(true);
-  console.log(localStorage.getItem("user"));
 
   const login = async (token) => {
     const options = {
@@ -35,14 +34,14 @@ export const AuthContextProvider = ({ children }) => {
         setIsValid(false);
       } else {
         const data = await response.json();
-        setUser(JSON.stringify(data.data));
         setUserToken(token);
-        localStorage.setItem("user", JSON.stringify(data.data));
+        setUser(data.data);
         localStorage.setItem("token", token);
         setIsValid(true);
       }
     } catch (error) {
       setIsValid(false);
+      localStorage.removeItem("token");
       throw error;
     }
   };
@@ -52,7 +51,6 @@ export const AuthContextProvider = ({ children }) => {
     setUser(null);
     setIsValid(false);
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
   };
   
 

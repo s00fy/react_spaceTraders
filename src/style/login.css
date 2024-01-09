@@ -11,7 +11,6 @@
 .loginTitle{
     font-family: var(--highlight-font);
     font-size: 3.7rem;
-    border: 1px solid white;
     text-align: center;
     margin-top: 7.5rem;
     margin-bottom: 3rem;
@@ -56,7 +55,7 @@ form{
     gap: 24px;
     align-self: stretch;
 }
-input{
+.login__input{
     display: flex;
     flex: 1;
     padding: 1.25rem 1rem;

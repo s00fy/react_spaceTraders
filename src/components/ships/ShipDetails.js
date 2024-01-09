@@ -39,8 +39,14 @@ const ShipDetails = ({ship}) => {
                   <Link className='link' to={('/navigation')}>Go to navigation →</Link>
                 </div>
             </td>
+            <td className='cargoCard__column'>
               <Cargo stuff={ship.cargo} />
-              {/* <Fuel fuel={ship.fuel} /> */}
+            </td>
+              {/* 
+              <td className='fuel'>
+                <Fuel fuel={ship.fuel} />
+              </td>              
+               */}
           </tr>
         </tbody>
       </table>

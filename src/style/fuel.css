@@ -1,7 +1,6 @@
 @import url('./main.css');
-.fuel{
+@import url('./main.css');
 
-}
 
 .fuel__card{
     display: flex;
@@ -15,12 +14,29 @@
     height: 20rem;
     margin: 0 auto;
 }
+.fuel__progress{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+.fuel__progress>label{
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+.fuel__progress>progress{
+    width: 100%;
+}
+
+.fuel__progress>progress::-webkit-progress-bar,
+.fuel__progress>progress::-webkit-progress-value,
+.fuel__progress>progress::-moz-progress-bar,
+.fuel__progress>progress[value]
+{
+    background-color: var(--blue);
+}
 
 .fuel__title{
     font-size: 2.6rem;
     font-family: var(--highlight-font);
-}
-
-.fuel__progress{
-    border-radius: 50%;
 }
