@@ -1,0 +1,26 @@
+@import url('./main.css');
+.fuel{
+
+}
+
+.fuel__card{
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    background: var(--black-bg);
+    width: 18.3125rem;
+    height: 20rem;
+    margin: 0 auto;
+}
+
+.fuel__title{
+    font-size: 2.6rem;
+    font-family: var(--highlight-font);
+}
+
+.fuel__progress{
+
+}
