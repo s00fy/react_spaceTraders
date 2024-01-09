@@ -4,8 +4,6 @@ import Money from './Money';
 
 const Header = () => {
     const navigate = useNavigate();
-    console.log(localStorage.getItem("user"));
-    console.log(localStorage.getItem("token"));
     if (localStorage.getItem("user") === null || localStorage.getItem("token") === null) {
         navigate('/');
     }

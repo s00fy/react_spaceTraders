@@ -23,24 +23,23 @@ const Login = () => {
         }
     };
 
-    const authValid = () => {
-        if (auth.isValid === true ) {
-            setLoggedInMessage(true);
-            navigate('/fleet');
-        } else {
-            setLoggedInMessage(false);
-        }
-    }
-
     useEffect(() => {
         const loggedIn = () => {
             let storedToken = localStorage.getItem("token");
             auth.login(storedToken);
+            const authValid = () => {
+                if (auth.isValid === true ) {
+                    setLoggedInMessage(true);
+                    navigate('/fleet');
+                } else {
+                    setLoggedInMessage(false);
+                }
+            }
             authValid();
         };
     
         loggedIn();
-    }, [auth, navigate, authValid]);
+    }, [auth, navigate]);
 
   return (
     <div>
