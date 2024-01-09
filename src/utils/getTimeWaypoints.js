@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const GetTimeWaypoints = ({flight, dist, speed}) => {
   const [navMultiplier, setNavMultiplier] = useState('');
-  const [distance, setDistance] = useState(dist);
   const [secondsTravelled, setSecondsTravelled] = useState(0);
 
   const attributeNavMultiplier = (flight) => {
@@ -33,7 +32,7 @@ const GetTimeWaypoints = ({flight, dist, speed}) => {
     // calculateSecondsTravelled();
     attributeNavMultiplier(flight);
     getTravelTime(dist, navMultiplier, speed)
-  }, [ dist, speed, flight]);
+  }, [ dist, speed, flight, navMultiplier]);
 
   return (
     <div>

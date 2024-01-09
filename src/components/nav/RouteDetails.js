@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 
 const RouteDetails = ({nav}) => {
-    const[isTransitionning, setIsTransitionning] = useState(true);
+    // const[isTransitionning, setIsTransitionning] = useState(true);
+
+    
 
     console.log(nav);
     return(

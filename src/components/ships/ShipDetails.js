@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Fuel from './Fuel';
 import Cargo from './Cargo';
 
 const ShipDetails = ({ship}) => {
 
-    const [cargoShown, isCargoShown] = useState(true);
+    // const [cargoShown, isCargoShown] = useState(true);
     let fuelPercentage = 0;
     if (ship.fuel.capacity === 0 ) {
       fuelPercentage = 'undefined'; 
     }else{
       fuelPercentage = Math.round((ship.fuel.current * 100) / ship.fuel.capacity); 
     }
-    
 
     return (
       <>
@@ -39,11 +38,8 @@ const ShipDetails = ({ship}) => {
                   <Link className='link' to={('/navigation')}>Go to navigation →</Link>
                 </div>
             </td>
-            { isCargoShown ? 
               <Cargo stuff={ship.cargo} />
-              : 
-              <Fuel fuel={ship.fuel} />
-            }
+              {/* <Fuel fuel={ship.fuel} /> */}
           </tr>
         </tbody>
       </table>

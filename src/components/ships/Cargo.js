@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import '../../style/cargo.css';
 const Cargo = (props)=>{
  

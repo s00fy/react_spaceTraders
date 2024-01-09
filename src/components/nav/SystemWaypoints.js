@@ -5,7 +5,6 @@ import GetTimeWaypoints from '../../utils/getTimeWaypoints';
 const SystemWaypoints = ({systemSymbol, shipLocation, status, shipSymbol, shipX, shipY, flightMode, speed }) => {
 
   const [waypointsList, setWaypointsList] = useState([]);
-  const [navigateToWaypoint, setNavigateToWaypoint] = useState(null);
   const token = localStorage.getItem("token");
   const theShipSymbol = shipSymbol;
   const flight =flightMode;
@@ -76,7 +75,6 @@ const SystemWaypoints = ({systemSymbol, shipLocation, status, shipSymbol, shipX,
       try {
         const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
         const data = await response.json();
-        setNavigateToWaypoint(data.data);
       } catch (error) {
         console.error('Error fetching navigate info:', error);
       }

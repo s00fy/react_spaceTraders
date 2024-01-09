@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Fuel from './Fuel';
-import Cargo from './Cargo';
+import { useState } from 'react';
 import ShipDetails from './ShipDetails';
 import '../../style/shipDetails.css';
 

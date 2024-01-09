@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import Ship from "./Ship";
 import Header from "../user/Header";
-import { useAuthContext } from '../auth/authContext';
-import { useNavigate } from 'react-router-dom';
+// import { useAuthContext } from '../auth/authContext';
+// import { useNavigate } from 'react-router-dom';
 import '../../style/fleet.css';
 
 const ShipRender = () => {
   const [shipsRender, setShipsRender] = useState([]);
-  const auth = useAuthContext();
-  const navigate = useNavigate();
+  // const auth = useAuthContext();
+  // const navigate = useNavigate();
   const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +29,7 @@ const ShipRender = () => {
     };
 
     fetchData();
-  }, []);
+  }, [token]);
 
     const shipsDisplay = shipsRender.map((ship, index) =>{
     return (

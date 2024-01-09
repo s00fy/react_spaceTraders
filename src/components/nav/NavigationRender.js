@@ -8,8 +8,6 @@ const NavigationRender = () => {
   const [selectedId, setSelectedId] = useState(null);
   //const [chosenShip, setChosenShip] = useState([]);
   const token = localStorage.getItem("token");
-  let chosenShip = [];
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +28,7 @@ const NavigationRender = () => {
     };
 
     fetchData();
-  }, []); // This runs once when the component mounts
+  }, [token]); // This runs once when the component mounts
     const shipsDisplay = shipsRender.map((ship, index) =>{
     return (
       <option className='selectShip__option' key={index} value={ship.symbol}>{ship.symbol}</option>

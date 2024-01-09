@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import ShipStatus from './ShipStatus';
 import SystemWaypoints from './SystemWaypoints';
 import Cargo from '../ships/Cargo';

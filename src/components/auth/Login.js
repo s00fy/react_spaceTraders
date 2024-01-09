@@ -36,7 +36,7 @@ const Login = () => {
         };
     
         loggedIn();
-    }, [auth]);
+    }, [auth, navigate()]);
 
   return (
     <div>
