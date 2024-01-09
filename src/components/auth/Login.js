@@ -14,12 +14,15 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         auth.login(token);
-        if (auth.userToken === token) {
-            setErrorMessage(null);
-            navigate('/fleet');
-        }
-        if (auth.userToken !== token){
-            setErrorMessage("Please enter a valid token");
+        if (token) {
+            
+            if (auth.userToken === token) {
+                setErrorMessage(null);
+                navigate('/fleet');
+            }
+            if (auth.userToken !== token){
+                setErrorMessage("Please enter a valid token");
+            }
         }
     };
 
