@@ -1,0 +1,96 @@
+@import url('./main.css');
+
+
+/* 
+    main table css
+*/
+/* table, tbody, thead, td, tr, th{
+    border: 1px solid red;
+} */
+
+.fleetTable, .fleetTable__nested{
+    background: var(--black-bg);
+    border-radius: 1rem;
+    display: flex;
+    padding: 3.125rem 1.8rem 2rem 1.8rem;
+    margin-bottom: 2.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 92vw;
+    border: 2px solid var(--white);
+}
+
+.fleetTable__nested{
+    width: 100%;
+}
+
+.fleetTable{
+    margin-bottom: 15.625rem;
+}
+
+.fleetTable button{
+    border: none;
+    background-color: transparent;
+}
+
+.close{
+    transform: rotate(225deg);
+}
+
+.fleetTable__row{
+    position: relative;
+}
+.fleetTable__row::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    width: 80%;
+    height: 2px;
+    background-color: var(--blueish-grey);
+}
+
+.fleetTable__row__unset::before{
+    width: 0;
+}
+
+th{
+    width: 16.5%;
+    text-align: start;
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: var(--highlight-font);
+}
+
+.fleetTable__rowItem{
+    width: 16.5%;
+    vertical-align: middle;
+}
+
+.fleetTable__lastColumn{
+    vertical-align: middle;
+    width: 1rem;
+}
+
+thead .fleetTable__lastColumn{
+    padding: 1.25rem 2rem;    
+}
+
+.fleetTable__more{
+    height: 2rem;
+    transition: all 0.2s linear;
+}
+
+.container__content
+{
+    margin: 46px auto;
+    overflow-y: auto;
+    position: fixed;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container__content::-webkit-scrollbar{
+    display: none;
+}

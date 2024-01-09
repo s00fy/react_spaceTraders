@@ -1,0 +1,97 @@
+@import url("./reset.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+@font-face {
+    font-family: 'Nico-Moji';
+    src:url('../../public/font/Nico-Moji.ttf.woff') format('woff'),
+        url('../../public/font/Nico-Moji.ttf.svg#Nico-Moji') format('svg'),
+        url('../../public/font/Nico-Moji.ttf.eot'),
+        url('../../public/font/Nico-Moji.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --font : 'Krona One', sans-serif;
+    --highlight-font : 'Nico-Moji';
+    --black: #121212;
+    --white: #dfdfdf;
+    --blueish-grey:#9E9BB0;
+    --blue: #5690E8;
+    --black-bg: linear-gradient(180deg, #0D1421 0%, #2D374A 100%);
+}
+
+select, option{
+    font-family: var(--font);
+}
+
+body{
+    background: var(--black);
+    font-family: var(--font);
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.app{
+    border: 32px solid var(--black);
+    border-block-width: 56px;
+    position: fixed;
+    height: 85vh;
+    left: 32px;
+    width: 96vw;
+    z-index: 99;
+}
+
+.shapeTop{
+    position: fixed;
+    top: -7px;
+    left: 50%;
+    transform:translateX(-50%);
+    z-index: 1;
+}
+.shapeBottom{
+    position: fixed;
+    z-index: 1;
+    bottom: 8px;
+    left: 50%;
+    transform:translateX(-50%);
+    z-index: -1;
+}
+.content{
+}
+
+.title{
+    font-size: 3.7rem;
+    margin-top: 7.5rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+
+.link{
+    color: var(--blueish-grey);
+    font-size: 1.1rem;
+    width:fit-content;
+    position: relative;
+}
+
+.link::before{
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    background-color: var(--blueish-grey);
+}
+
+
+.link:hover::before{
+    width: 100%;
+}

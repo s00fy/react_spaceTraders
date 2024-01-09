@@ -1,0 +1,121 @@
+@import url('./reset.css');
+
+@keyframes fade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+  
+/*
+Styling stars bg
+*/
+
+#stars {
+    background: #2d3037;
+    width: calc(100% - 64px);
+    height: 100%;
+    margin: 46px 32px;
+    position: fixed;
+    z-index: -10;
+    border-radius: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+  
+.star {
+    animation: fade 10s;
+    border-radius: 50%;
+    background: var(--white);
+    position: absolute;
+    z-index: -11;
+}
+
+
+/*
+Styling bottom form
+*/
+
+.bottomStyleLeft, .bottomStyleRight{
+    background: var(--black);
+    position: fixed;
+    bottom: 0;
+    height: 3.9rem;
+    width: 27vw;
+    z-index: 999;
+
+}
+
+.bottomStyleRight{
+    right: 0;
+}
+
+.bottomStyleLeft::before, .bottomStyleRight::before{
+    content: '';
+    position: absolute;
+    top: 4px;
+    height: 140%;
+    width: 62px;
+    background: var(--black);
+    border-radius: 1rem;
+}
+
+.bottomStyleLeft::before{
+    right: -36px;
+    transform: rotate(145deg);
+}
+
+.bottomStyleRight::before{
+    transform: rotate(35deg);
+    left: -36px;
+}
+
+.bottomStyleLeft::after, .bottomStyleRight::after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -30px;
+    border-radius: 15px;
+}
+
+.bottomStyleRight::after{
+    right: 32px;
+    box-shadow: 13px 15px 0 0 var(--black);
+}
+
+.bottomStyleLeft::after{
+    left:32px;
+    box-shadow: -13px 15px 0 0 var(--black);
+}
+
+.bottomLine{
+    background: var(--black);
+    width: 100%;
+    height: 8px;
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+}
+
+.bottomLine::after, .bottomLine::before{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 8px;
+    border-radius: 10px;
+}
+
+.bottomLine::after{
+    left:calc(27vw + 43px);
+    box-shadow: -10px 25px 0 0 var(--black);
+    
+}
+
+.bottomLine::before{
+    right:calc(27vw + 43px);
+    box-shadow: 10px 25px 0 0 var(--black);
+}

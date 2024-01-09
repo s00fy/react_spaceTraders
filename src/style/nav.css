@@ -1,0 +1,93 @@
+@import url("./main.css");
+
+
+/***
+SELECT AND OPTIONS
+***/
+
+.selectShip{
+    width: 100%;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.375rem;
+}
+
+.selectShip{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.selectContainer{
+    position: relative;
+}
+
+.selectContainer:after{
+    content: '\2B9F';
+    position: absolute;
+    top: 0.3rem;
+    right: 0;
+    font-size: 1.7rem;
+    border-left: 1px solid var(--blueish-grey);
+    display: flex;
+    align-items: center;
+    height: 1.2rem;
+    color: var(--blueish-grey);
+    padding: 11px 15px;
+    pointer-events: none;
+}
+
+.selectShip__default{
+    color: var(--blueish-grey);
+    font-style: italic;
+}
+
+.selectShip__option{
+    border-radius: 1rem;
+}
+
+/***
+TOOLTIP FOR FLIGHTMODE
+***/
+
+.flightMode__tooltip{
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    font-size: 0.875rem;
+    background: var(--black);
+    color: var(--black);
+    padding: 0.3125rem 0.5rem;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.625rem 0.625rem rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    width: max-content;
+    pointer-events: none;
+    transition: all 0.1s;
+}
+
+.flightMode__tooltip::before{
+    position: absolute;
+    content: "";
+    height: 0.5rem;
+    width: 0.5rem;
+    background: var(--white);
+    top: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    z-index: 999;
+}
+
+.burn, .stealth, .cruise, .drift{
+    position: relative;
+}
+
+.burn:hover .burn__tooltip, .stealth:hover .stealth__tooltip, .cruise:hover .cruise__tooltip, .drift:hover .drift__tooltip{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 999;
+    background: var(--white);
+    color: var(--black);
+}

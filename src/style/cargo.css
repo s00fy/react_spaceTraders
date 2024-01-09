@@ -1,0 +1,53 @@
+@import url('./main.css');
+
+
+.cargoCard__cargo{
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    background: var(--black-bg);
+    width: 18.3125rem;
+    height: 20rem;
+    margin: 0 auto;
+}
+.cargoCard__cargo__progress{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+.cargoCard__cargo__progress>label{
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+.cargoCard__cargo__progress>progress{
+    width: 100%;
+}
+
+.cargoCard__cargo__progress>progress::-webkit-progress-bar,
+.cargoCard__cargo__progress>progress::-webkit-progress-value,
+.cargoCard__cargo__progress>progress::-moz-progress-bar,
+.cargoCard__cargo__progress>progress[value]
+{
+    background-color: var(--blue);
+}
+
+.cargoCard__column{
+    width: 80%;
+}
+.cargoCard__cargo__list{
+    width: 100%;
+    height: 180px;
+    overflow-y: overlay; 
+}
+.cargoCard__cargo__list>div{
+    display: flex;
+    justify-content: space-between;
+}
+.cargoCard__cargo__title{
+    font-size: 2.6rem;
+    font-family: var(--highlight-font);
+}

@@ -1,0 +1,71 @@
+@import url('./main.css');
+
+.nav{
+    background: var(--black-bg);
+    padding: 4rem 3rem 3rem 4rem;
+    margin: 5rem auto;
+    width: 80vw;
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    display: flex;
+}
+
+.nav__idColumn{
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav__idColumn__firstRow{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 0 ;
+}
+
+.nav__id{
+    font-size: 1.8rem;
+}
+
+.navStatus{
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid var(--blueish-grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.navStatus__button{
+    font-size: 1rem;
+}
+
+.shipInfos{
+    
+}
+
+.shipInfos__stuff{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 2rem 0;    
+}
+
+.cargoCard__cargo{
+    margin:0;
+}
+
+.shipInfos__fm
+{
+    background-color: red;
+    padding: 2rem 4rem;
+    gap: 5rem;
+}
+
+.shipInfos__fm__btns{
+    display: flex;
+    justify-content: space-between;
+}

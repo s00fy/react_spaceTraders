@@ -1,0 +1,131 @@
+
+
+/* 
+    shipDetails component
+*/
+
+.fleetTable__detailsContainer{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    padding: 80px 78px 50px 78px;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+.fleetTable__details__idColumn{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
+    
+}
+/*
+    Styling the name
+*/
+
+.fleetTable__details__id{
+    font-size: 1.5rem;
+    
+}
+
+.fleetTable__details__symbol{
+    border-radius: 1rem;
+    padding: 1rem 1.5rem 1rem 1rem;
+    margin-right: 2rem;
+    background-color: var(--white);
+    color: var(--black);
+    position: relative;
+}
+.fleetTable__details__symbol::after{
+    content: '';
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    opacity: 0;
+    top: 50%;
+    left: 30%;
+    border-radius: 50%;
+    padding: 0.5rem;
+    border:1px solid var(--white);
+    transition: all 0.3s ease-in-out;
+}
+.fleetTable__details__symbol:hover::after{
+    opacity: 1;
+    border-radius: 1.4rem;
+    width: 99%;
+    height: 99%;
+    top: -0.52rem;
+    left: -0.52rem;
+}
+
+.fleetTable__details__shipType{
+    margin-left: 2rem;
+}
+
+.fleetTable__details__status, .fleetTable__details__cargo, .fleetTable__details__fuel{
+    border-radius: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid var(--blueish-grey);
+}
+.fleetTable__details__statusInfo{
+    font-style: italic;
+}
+.fleetTable__details__stock{
+    display: flex;
+    gap: 2rem;
+}
+.fleetTable__details__cargo{
+    
+}
+.fleetTable__details__fuel{
+    
+}
+.fleetTable__details__card{
+    
+}
+
+/****
+DONUT GRAPH
+****/
+.semi-donut{
+    --percentage: 100;
+    --fill: var(--blue);
+    width: 300px;
+    height: 150px;
+    position: relative;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    overflow: hidden;
+    color: var(--fill);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing : border-box;
+}
+.semi-donut:after{
+  content: '';
+  width: 300px;
+  height: 300px;
+  border:50px solid;
+  border-color : rgba(0,0,0,0.15) rgba(0,0,0,0.15) var(--fill) var(--fill);
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  box-sizing : border-box;
+  transform: rotate( calc( 1deg * ( -45 + var(--percentage) * 1.8 ) ) );
+  animation : fillAnimation 1s ease-in;
+}
+
+@keyframes fillAnimation{
+    0%{transform : rotate(-45deg);}
+    50%{transform: rotate(135deg);}
+  }
+  
+  @keyframes fillGraphAnimation{
+    0%{transform: rotate(0deg);}
+    50%{transform: rotate(180deg);}
+  }

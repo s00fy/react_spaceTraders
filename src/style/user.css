@@ -1,0 +1,29 @@
+@import url('./main.css');
+
+.user__container{
+    padding-top: 6rem;
+}
+
+.user__card{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 5rem;
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    background: var(--black-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.user__title{
+    margin-top: 4rem;
+    margin-bottom:0;
+}
+
+.user__infos{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2.5rem;
+}
