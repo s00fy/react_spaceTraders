@@ -95,3 +95,13 @@ body{
 .link:hover::before{
     width: 100%;
 }
+
+.fetch__error{
+    font-size: 0.8rem;
+    background-color: #e98181d8;
+    color: var(--black);
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+}

@@ -6,10 +6,12 @@ import Header from "../user/Header";
 import '../../style/fleet.css';
 
 const ShipRender = () => {
-  const [shipsRender, setShipsRender] = useState([]);
   // const auth = useAuthContext();
   // const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [shipsRender, setShipsRender] = useState([]);
+
+
   useEffect(() => {
     const fetchData = async () => {
       const options = {

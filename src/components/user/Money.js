@@ -2,7 +2,7 @@ import { useAuthContext } from '../auth/authContext';
 
 const Money = () => {
     const auth = useAuthContext();
-    const user = auth.user;
+    const user = typeof auth.user === 'object' ? auth.user : JSON.parse(auth.user || '{}');
 
     return(
         <>

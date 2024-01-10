@@ -22,6 +22,7 @@ const NavigationRender = () => {
         const response = await fetch('https://api.spacetraders.io/v2/my/ships', options);
         const data = await response.json();
         setShipsRender(data.data);
+        console.log('data fetch');
       } catch (error) {
         console.error('Error fetching ships info:', error);
       }
@@ -43,7 +44,10 @@ const NavigationRender = () => {
       
           <Header />
         <div className='content__nav container__content'>
-        <h1 className='title'>Navigation Info</h1>
+          <div className='nav__id'>
+            <h1 className='title'>Navigation Info</h1>
+            <button className='refetch'>&#11118;</button>
+          </div>
         {shipsRender ? (
             <div className='selectContainer'>
                 <select className='selectShip' onChange={ (e)=>changeShip(e) }>

@@ -1,0 +1,58 @@
+@import url('./main.css');
+
+.system__list{
+    flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 8rem;
+}
+
+.sysWp__container{
+    background: var(--black-bg) ;
+    margin: 18px;
+    padding: 2rem 1rem;
+    border: 2px solid var(--white);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sysWp__id{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sysWp__title{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--white);
+    color: var(--black);
+    width: fit-content;
+    margin-bottom: 1.5rem;
+}
+
+.sysWp__type{
+
+}
+
+.sysWp__traits{
+    color: var(--blueish-grey);
+    border:2px solid var(--blueish-grey);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-style: italic;
+    font-size: 0.9rem;
+    width: fit-content;
+}
+
+.sysWp__cta{
+    font-size: 1rem;
+}
+
+
+.sysWp__cta:disabled{
+    background-color: #947394;
+    color: #533953;
+}

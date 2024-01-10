@@ -1,15 +1,12 @@
-// import { useState } from "react";
+import DateFormat from "../../utils/DateFormat";
 
 const RouteDetails = ({nav}) => {
-    // const[isTransitionning, setIsTransitionning] = useState(true);
-
-    
 
     console.log(nav);
     return(
         <>
-            <p>You've get into the galaxy at {nav.route.departureTime}</p>
-            <p>You will arrive at {nav.route.arrival}</p>
+            <p>You've get into the galaxy at {DateFormat(nav.route.departureTime)}</p>
+            <p>You will arrive at {DateFormat(nav.route.arrival)}</p>
         </>
     )
     

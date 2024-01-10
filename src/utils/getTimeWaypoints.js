@@ -35,9 +35,7 @@ const GetTimeWaypoints = ({flight, dist, speed}) => {
   }, [ dist, speed, flight, navMultiplier]);
 
   return (
-    <div>
-      <p>The ship will take {secondsTravelled} seconds to travel.</p>
-    </div>
+    <p className='timeTravel'>{secondsTravelled}s </p>
   );
 };
 

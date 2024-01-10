@@ -7,13 +7,16 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
     const [isDocked, setIsDocked] = useState(false);
     
     useEffect(() => {
-      setIsDocked(shipNav.status === "DOCKED");
-      setIsStateChanged(shipNav.status);
-      }, [shipNav.status]);
+      shipNav.status === "DOCKED" ? setIsDocked(true) : setIsDocked(false);
+      setIsStateChanged(isStateChanged);
+      setIsDocked((current) => !current);
+      console.log(isDocked);
+      }, [shipNav.status, isStateChanged]);
     
       const handleClickStatus = async () => {
-        if (isStateChanged === "DOCKED") {
+        if (!isDocked) {
           const options = {
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
               Accept: "application/json",
@@ -28,11 +31,12 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
               const data = await response.json();
               setIsStateChanged(data.data);
               console.log(isStateChanged);
-              setIsDocked(false);
+              setIsDocked(true);
             } catch (error) {
-              console.error('Error fetching ships info:', error);
+              console.error('Error putting the ship in orbit:', error);
             }
         } else {
+          console.log('well is not docked');
           const options = {
             method: "POST",
             headers: {
@@ -47,10 +51,11 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
                 options
             );
             const data = await response.json();
-            setIsStateChanged(data.data.nav.status);
-            setIsDocked(true);
+            setIsStateChanged(data.data);
+            console.log(isStateChanged);
+            setIsDocked(false);
           } catch (error) {
-            console.error('Error fetching ships info:', error);
+            console.error('Error docking info:', error);
           } 
         }
       };

@@ -1,6 +1,21 @@
 @import url("./main.css");
 
 
+.nav__id{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.refetch{
+    height: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /***
 SELECT AND OPTIONS
 ***/
@@ -79,12 +94,16 @@ TOOLTIP FOR FLIGHTMODE
     z-index: 999;
 }
 
-.burn, .stealth, .cruise, .drift{
+.shipInfos__fm__btns{
     position: relative;
 }
 
 .burn:hover .burn__tooltip, .stealth:hover .stealth__tooltip, .cruise:hover .cruise__tooltip, .drift:hover .drift__tooltip{
-    opacity: 1;
+    opacity: 0.8;
+    margin-right: auto;
+    margin-left: auto;
+    left: 50%;
+    transform: translate(-50%);
     visibility: visible;
     pointer-events: auto;
     z-index: 999;

@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import GoodModal from "./GoodModal";
 import '../../style/market.css';
 
-const MarketRender = ({wpSymbol, systemSymbol, shipSymbol}) => {
+const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
     const token = localStorage.getItem('token');
     const [marketInfo, setMarketInfo] = useState([]);
-    const [good, setGood] = useState([]);
+    const [canSell, setCanSell] = useState(false);
+    const [good, setGood] = useState(null);
+
+
     useEffect(() => {
         const fetchData = async () => {
           const options = {
@@ -30,8 +33,15 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol}) => {
         fetchData();
       }, [wpSymbol, systemSymbol, token]);
 
+
       const handleSingleGood = (good) => {
+        setCanSell(false);
         setGood(good);
+        shipCargo.inventory.forEach(item => {
+          if (item.symbol === good) {
+            setCanSell(true);
+          }
+        });
       }
 
       const displayGoods = marketInfo.tradeGoods ? (
@@ -57,10 +67,10 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol}) => {
       return(
         <div className="market">
         { marketInfo.tradeGoods ?
-          <ul className="marketList">{displayGoods}</ul> : <p>Scanning market...</p>
+          <ul className="marketList">{displayGoods}</ul> : <p>No marketplace here, good luck ! :) </p>
         }
         { good ?
-          <GoodModal good={good} shipSymbol={shipSymbol} />
+          <GoodModal good={good} sell={canSell} shipCargo={shipCargo} shipSymbol={shipSymbol} />
         
         : null}
         </div>

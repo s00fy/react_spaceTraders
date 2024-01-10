@@ -40,3 +40,45 @@
     font-size: 2.6rem;
     font-family: var(--highlight-font);
 }
+.refuel{
+    position: relative;
+}
+
+.refuel__tooltip{
+    position: absolute;
+    bottom: -55%;
+    left: 20%;
+    transform: translate(-50%);
+    font-size: 0.875rem;
+    background: var(--black);
+    color: var(--black);
+    opacity: 0;
+    padding: 0.3125rem 0.5rem;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.625rem 0.625rem rgba(0, 0, 0, 0.1);
+    width: max-content;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.refuel__tooltip::before {
+    position: absolute;
+    content: "";
+    height: 0.5rem;
+    width: 0.5rem;
+    background: var(--white);
+    top: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 999;
+}
+
+.refuel:hover .refuel__tooltip{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 999;
+    background: var(--white);
+    color: var(--black);
+}

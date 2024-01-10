@@ -7,11 +7,15 @@ import Fuel from '../ships/Fuel';
 import '../../style/shipNav.css';
 
 const ShipNav = (props) => {
-    const [navInfo, setNavInfo] = useState([]);
+    const [ship, setShip] = useState([]);
     const token = localStorage.getItem('token');
     const [ shown, setShown] = useState(false);
     const [ flightMode, setFlightMode] = useState([]);
-  
+    const [ justMined, setJustMined ] = useState(null);
+    const [ miningYield, setMiningYield] = useState(null);
+    const [ updateCargo, setUpdateCargo ] = useState([]);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
       const fetchData = async () => {
         const options = {
@@ -27,8 +31,9 @@ const ShipNav = (props) => {
             options
           );
           const data = await response.json();
-          setNavInfo(data.data);
+          setShip(data.data);
           setFlightMode(data.data.nav);
+          setUpdateCargo(data.data.cargo);
         } catch (error) {
           console.error('Error fetching ships info:', error);
         }
@@ -46,7 +51,7 @@ const ShipNav = (props) => {
       const newFlightMode = e.target.innerHTML;
       const options = {
         method: "PATCH",
-        endpoint: `my/ships/${navInfo.symbol}/nav`,
+        endpoint: `my/ships/${ship.symbol}/nav`,
         headers: {
           "Content-Type": "application/json",
           Accept: 'application/json',
@@ -63,27 +68,46 @@ const ShipNav = (props) => {
       } catch (error) {
         console.error('Error fetching flightMode info:', error);
       }
-    }
+    };
 
-    const clickHandlerRefuel = async () => {
+    const handleMining = async () => {
       const options = {
         method: "POST",
-        endpoint: `my/ships/${navInfo.symbol}/refuel`,
+        endpoint: `my/ships/${ship.symbol}/extract`,
         headers: {
           "Content-Type": "application/json",
+          Accept: 'application/json',
           Authorization: `Bearer ${token}`,
         },
       };
       try {
-        await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
+        const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
+        const data = await response.json();
+        console.log(data);
+        if (data.error) {
+          setJustMined(null);
+          setMiningYield(null);
+          setError(data.error.message);
+        }else if (data.data.extraction){
+          setError(null);
+          setMiningYield(data.data.extraction.yield);
+          setJustMined(data.data);
+          setUpdateCargo(data.data.cargo);
+        }
       } catch (error) {
-        console.error('Error fetching Refuel info:', error);
+        console.error('Error fetching flightMode info:', error);
       }
+    };
+
+    const handleError = () => {
+      setError(null);
+      setJustMined(null);
+      setMiningYield(null);
     }
 
     return (
       <>
-        {navInfo.symbol ? (
+        {ship.symbol ? (
           <>
         <div className='nav__content'>
           <div className='nav'>
@@ -91,20 +115,17 @@ const ShipNav = (props) => {
               <div className='nav__idColumn__firstRow'>
                 <div className='nav__idColumn__name'>
                   <img src="./img/icons/spaceship.svg" className='nav__shipIcon'/>
-                  <p className='nav__id'>{navInfo.symbol} ✼ {navInfo.frame.name}</p>
+                  <p className='nav__id'>{ship.symbol} ✼ {ship.frame.name}</p>
                 </div>
                 <div className='nav__status'>
-                  <ShipStatus shipSymbol={navInfo.symbol} shipNav={navInfo.nav}></ShipStatus>
+                  <ShipStatus shipSymbol={ship.symbol} shipNav={ship.nav}></ShipStatus>
                 </div>
               </div>
               <div className='shipInfos'>
                 <div className="shipInfos__stuff">
-                  <Cargo stuff={navInfo.cargo} />
-                  <Fuel fuel={navInfo.fuel} />
+                  <Cargo stuff={updateCargo} />
+                  <Fuel fuel={ship.fuel} shipSymbol={ship.symbol} />
                 </div>
-                <p>Fuel :  {`${navInfo.fuel.current}/${navInfo.fuel.capacity}`}</p>
-                <button onClick={clickHandlerRefuel}>Refuel</button>
-                <p className='tooltip'>You need to be in a marketplace in order to be able to refuel</p>
                 <div className='shipInfos__fm'>
                   <p className='shipInfos__fm__txtCurrent'>Your current flight Mode : {flightMode.flightMode} </p>
                   <p className='shipInfos__fm__txtChange'>Change flight Mode to : </p>
@@ -133,19 +154,26 @@ const ShipNav = (props) => {
           </div>
           <div className='nav'>
             <div className='nav__btns'>
-              <button /* onClick={handleWaypointSpec} */ >Waypoint</button>
-              <button>Marketplace</button>
-              <button>Shipyard</button>
-              <button>Mine</button>
+              <button onClick={handleMining} className='nav__extractBtn' >Extract resources </button>
+              {error &&
+                <p className='fetch__error' onClick={handleError}>{error}</p>
+              }
+              { justMined ? 
+              <>
+                <p className='fetch__error' onClick={handleError}>You just mined {miningYield.units} {miningYield.symbol}</p>
+                <p className='fetch__error' onClick={handleError}>You have to wait {justMined.cooldown.totalSeconds}s to mine again.</p>
+              </>:null
+              }
+
             </div>
             <div className='nav__txt'>
-              <Waypoint wpSymbol={navInfo.nav.waypointSymbol} systemSymbol={navInfo.nav.systemSymbol} shipSymbol={navInfo.symbol} />            
+              <Waypoint wpSymbol={ship.nav.waypointSymbol} shipCargo={ship.cargo} systemSymbol={ship.nav.systemSymbol} shipSymbol={ship.symbol} />            
             </div>
-              <button onClick={handleClickWaypointsList}>Scan nearby waypoints</button>
+              <button className='nav__btn__wp' onClick={handleClickWaypointsList}>Scan nearby waypoints ↓</button>
             </div>
             </div>
             {shown ? (
-              <SystemWaypoints shipLocation={navInfo.waypointSymbol} systemSymbol={navInfo.nav.systemSymbol} speed={navInfo.engine.speed} flightMode={flightMode.flightMode} shipSymbol={props.shipSymbol} shipY={navInfo.nav.route.origin.y} shipX={navInfo.nav.route.origin.x} status={navInfo.nav.status} />
+              <SystemWaypoints systemSymbol={ship.nav.systemSymbol} speed={ship.engine.speed} flightMode={flightMode.flightMode} shipSymbol={ship.symbol} shipY={ship.nav.route.origin.y} shipX={ship.nav.route.origin.x} status={ship.nav.status} />
             ) : (null)}
           </>
         ) : (

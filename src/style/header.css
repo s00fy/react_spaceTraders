@@ -14,6 +14,7 @@ nav{
     align-items: center;
     width: 95%;
     gap: 5rem;
+    margin-top: 1rem;
 }
 
 .navbar__item{
