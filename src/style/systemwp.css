@@ -37,6 +37,10 @@
 
 }
 
+.sysWp__fuelCost{
+    color: #e98181;
+}
+
 .sysWp__traits{
     color: var(--blueish-grey);
     border:2px solid var(--blueish-grey);

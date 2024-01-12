@@ -94,3 +94,16 @@ thead .fleetTable__lastColumn{
 .container__content::-webkit-scrollbar{
     display: none;
 }
+
+.fleetTable__button:hover{
+    box-shadow: none;
+    border: none;
+}
+.fleetTable__button:active{
+    border: none;
+}
+
+.refuel .refuel__btn{
+    background: var(--blueish-grey);
+    border: 2px solid var(--white);
+}

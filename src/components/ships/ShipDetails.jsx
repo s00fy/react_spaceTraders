@@ -1,18 +1,27 @@
-// import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import Fuel from './Fuel';
+import Fuel from './Fuel';
 import Cargo from './Cargo';
 
 const ShipDetails = ({ship}) => {
-
-    // const [cargoShown, setCargoShown] = useState(true);
+    const cargoRef = useRef(null);
+    const fuelRef = useRef(null);
+    const [cargoShown, setCargoShown] = useState(true);
     let fuelPercentage = 0;
+
     if (ship.fuel.capacity === 0 ) {
       fuelPercentage = 'undefined'; 
     }else{
       fuelPercentage = Math.round((ship.fuel.current * 100) / ship.fuel.capacity); 
     }
     
+    const handleDisplayCargo = (btnRef) => {
+      if(btnRef === cargoRef){
+        setCargoShown(true);
+      }else{
+        setCargoShown(false);
+      }
+    }
 
     return (
       <>
@@ -27,9 +36,8 @@ const ShipDetails = ({ship}) => {
                     <p className='fleetTable__details__statusInfo'>{ship.nav.status}</p>
                   </div>
                   <div className='fleetTable__details__stock'>
-                    <p className='fleetTable__details__cargo'> Cargo : {ship.cargo.units}/{ship.cargo.capacity}</p>
-                    <p className='fleetTable__details__fuel'>Fuel : {ship.fuel.current}/{ship.fuel.capacity}
-                    { fuelPercentage !== 'undefined' ?
+                    <p ref={cargoRef} onClick={()=>handleDisplayCargo(cargoRef)} className='fleetTable__details__cargo'> Cargo : {ship.cargo.units}/{ship.cargo.capacity}</p>
+                    <p ref={fuelRef} onClick={()=>handleDisplayCargo(fuelRef)} className='fleetTable__details__fuel'>Fuel : {ship.fuel.current}/{ship.fuel.capacity} { fuelPercentage !== 'undefined' ?
                       `(${fuelPercentage} %)` 
                     : null }
                     </p>
@@ -39,14 +47,16 @@ const ShipDetails = ({ship}) => {
                   <Link className='link' to={('/navigation')}>Go to navigation →</Link>
                 </div>
             </td>
-            <td className='cargoCard__column'>
-              <Cargo stuff={ship.cargo} />
-            </td>
-              {/* 
-              <td className='fuel'>
-                <Fuel fuel={ship.fuel} />
+            {
+              cargoShown ?
+                <td className='cargoCard__column'>
+                <Cargo stuff={ship.cargo} />
+              </td>
+              :
+              <td className='fuelCard__column'>
+                <Fuel fuel={ship.fuel} shipSymbol={ship.symbol} />
               </td>              
-               */}
+            }
           </tr>
         </tbody>
       </table>

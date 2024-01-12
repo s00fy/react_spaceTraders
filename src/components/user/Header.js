@@ -22,12 +22,6 @@ const Header = () => {
                     </Link>
                 </li>
                 <li className='navbar__item'>
-                    <Link className='navbar__link' to={"/"}>
-                        <img src="./img/icons/rover.svg" className='navbar__icon' alt="link to mining resources" />
-                    </Link>
-                </li>
-
-                <li className='navbar__item'>
                     <Link className='navbar__link navbar__user' to={"/user"}>
                         <Money />
                         <img src="./img/icons/astronaut.svg" className='navbar__icon' alt="link to user profile" />

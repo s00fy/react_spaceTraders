@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RouteDetails from "./RouteDetails";
+import RouteDetails from "../RouteDetails";
 
 const ShipStatus = ({shipNav, shipSymbol}) => {
     const token = localStorage.getItem('token');
@@ -31,6 +31,7 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
               const data = await response.json();
               setIsStateChanged(data.data);
               console.log(isStateChanged);
+              console.log("dock orbit");
               setIsDocked(true);
             } catch (error) {
               console.error('Error putting the ship in orbit:', error);
@@ -53,6 +54,7 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
             const data = await response.json();
             setIsStateChanged(data.data);
             console.log(isStateChanged);
+            console.log("dock url");
             setIsDocked(false);
           } catch (error) {
             console.error('Error docking info:', error);

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import ShipNav from "./ShipNav";
+import ShipNav from "./shipInfo/ShipNav";
 import Header from "../user/Header";
 import '../../style/nav.css';
 
 const NavigationRender = () => {
   const [shipsRender, setShipsRender] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
-  //const [chosenShip, setChosenShip] = useState([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {

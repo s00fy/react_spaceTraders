@@ -1,16 +1,15 @@
 @import url('./main.css');
 
 
-.market{
+.market, .shipyard{
     display: flex;
     justify-content: stretch;
     gap: 5rem;
 }
 
-.marketList{
+.marketList, .shipyardList{
     justify-content: space-between;
-    gap: 1rem;
-    height: 21rem;
+    height: 25rem;
     margin-top: 2rem;
     overflow-y: overlay;
     width: 100%;
@@ -21,18 +20,32 @@
     padding-right: 2rem;
 }
 
-.marketList::-webkit-scrollbar {
-    width: 6px;
+.shipyardList{
+    display: flex;
+    height: fit-content;
+    width:max-content;
+    overflow-x: overlay;
+    overflow-y: clip;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.marketList::-webkit-scrollbar, .shipyardList::-webkit-scrollbar {
+    width: 0.4rem;
     border-radius: 1rem;
     margin-right: 1rem;
     background-color: var(--blueish-grey);
 }
 
-.marketList::-webkit-scrollbar-thumb {
+.shipyardList::-webkit-scrollbar{
+    height: 0.4rem;
+}
+
+.marketList::-webkit-scrollbar-thumb, .shipyardList::-webkit-scrollbar-thumb {
     background: var(--black);
 }
 
-.marketList__item{
+.marketList__item, .shipyardList__item{
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -44,6 +57,12 @@
     width: 80%;
 }
 
+.shipyardList__item{
+    width: 50rem;
+    height: fit-content;
+    padding: 2rem;
+}
+
 .good__name{
 
 }
@@ -53,23 +72,28 @@
     gap: 2rem;
 }
 
-.good__buy, .good__sell{
+.good__buy, .shipyard__ship__buy, .good__sell{
     display: flex;
     align-items: center;
 }
 
-.good__buyPrice{
-
+.shipyard__ship__title{
+    font-size: 1.8rem;
+    padding: 1rem 0 0.5rem;
 }
 
-.good__sellPrice{
-
+.shipyard__ship__description{
+    padding-bottom: 1rem;
 }
 
-.good__icon{
+.good__icon, .shipyard__ship__icon{
     height: 2.5rem;
     padding-right: 0.5rem;
     flex-wrap: wrap;
+}
+
+.shipyard__ship__moneyIcon{
+    padding-left: 0.5rem;
 }
 
 /*
@@ -110,7 +134,6 @@
     padding: 2rem;
     justify-content: space-between;
 }
-
 
 /*#region goodModal input type number arrows*/
 /* .goodModal__input::-webkit-inner-spin-button,

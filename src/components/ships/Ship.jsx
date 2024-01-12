@@ -23,7 +23,7 @@ const Ship = (props) => {
           <td className="fleetTable__rowItem">{`${shipsInfo.cargo.units}/${shipsInfo.cargo.capacity}`}</td>
           <td className="fleetTable__rowItem">{`${shipsInfo.fuel.current}/${shipsInfo.fuel.capacity}`}</td>
           <td className="fleetTable__lastColumn">
-            <button onClick={handleClick}>
+            <button className='fleetTable__button' onClick={handleClick}>
               <img src="./img/icons/more.svg" alt="" className={isShown ? "fleetTable__more close" : "fleetTable__more"} />
             </button>
           </td>

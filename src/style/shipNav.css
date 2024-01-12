@@ -3,12 +3,14 @@
 
 .nav__content{
     margin-bottom: 10rem;
+
 }
 
 .nav{
     padding: 4rem 3rem 3rem 4rem;
     margin: 5rem auto;
     width: 80vw;
+    overflow-x: hidden;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -25,7 +27,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 4rem 0 ;
+    padding-bottom: 2rem;
 }
 
 .nav__idColumn__name{
@@ -48,6 +50,8 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    margin-left: auto;
+    margin-bottom: 1rem;
 }
 .navStatus__button{
     font-size: 1rem;
@@ -71,25 +75,27 @@
 
 .shipInfos__fm
 {
-    margin: 1.5rem 0;
-    background: var(--black-bg);
     border-radius: 1rem;
     border: 2px solid var(--white);
-    padding: 2rem;
+    padding: 1rem;
+    margin-left: auto;
+    width: fit-content;
 }
 
 .shipInfos__fm__txtCurrent{
-    padding-top: 2rem;
-    font-size: 1.3rem;
 }
 .shipInfos__fm__txtChange{
-    font-size: 1.3rem;
-    padding: 2rem 0 3rem 0;
+    padding: 0.5rem 0 1rem 0;
 }
-
 .shipInfos__fm__btns{
     display: flex;
     justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.flightMode__option{
+    font-size: 1rem;
+    padding: 0.5rem;
 }
 
 /*
@@ -125,20 +131,32 @@
     wp design
 **/
 
-.wp__container, .wp__traitsContainer{
+.wp__container{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.wp__traitsContainer{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .wp__id{
     display: flex;
     align-items: center;
     gap: 1rem;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    border: 2px solid var(--white);
+    width: fit-content;
+    padding: 0.5rem 0.7rem 0;
+    margin-bottom: 1rem;
 }
 
 .wp__icon{
-    height: 3rem;
+    height: 4rem;
 }
 
 .wp__symbol{

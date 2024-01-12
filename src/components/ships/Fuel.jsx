@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 const Fuel = ({fuel, shipSymbol})=>{
   const [error, setError] = useState(null);
+  const [successRefuel, setSuccessRefuel] = useState(null);
   const token = localStorage.getItem('token');
+
   const clickHandlerRefuel = async () => {
       const options = {
         method: "POST",
@@ -18,6 +20,8 @@ const Fuel = ({fuel, shipSymbol})=>{
         const data = await response.json();
         if (data.error) {
           setError(data.error.message);
+        }else{
+          setSuccessRefuel(data.data.transaction);
         }
       } catch (error) {
         console.error('Error fetching Refuel info:', error);
@@ -40,10 +44,11 @@ const Fuel = ({fuel, shipSymbol})=>{
           </div>
           <div className='refuel'>
             <button className='refuel__btn' onClick={clickHandlerRefuel}>Refuel</button>
-            <p className='refuel__tooltip'>You need to be in a marketplace AND in orbit in order to be able to refuel</p>
+            <p className='refuel__tooltip'>You need to be in a marketplace AND docked in order to be able to refuel</p>
           </div>
 
           {error && <p className='fetch__error' onClick={handleError}>{error}</p>}
+          {successRefuel && <p className='fetch__success' onClick={handleError}> You successfully bought {successRefuel.units} fuels for {successRefuel.totalPrice}$ </p>}
         </div>
       </>
       ) : (

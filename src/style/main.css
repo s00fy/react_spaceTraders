@@ -104,4 +104,21 @@ body{
     padding: 0.5rem;
     border-radius: 0.5rem;
     opacity: 0.8;
+    width: fit-content;
+}
+
+.notif{
+    position: sticky;
+    bottom: -1rem;
+    top: 7rem;
+}
+
+.fetch__success{
+    font-size: 0.8rem;
+    background-color: #5690e8;
+    color: var(--black);
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    opacity: 0.8;
 }

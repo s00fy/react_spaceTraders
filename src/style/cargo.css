@@ -35,7 +35,7 @@
     background-color: var(--blue);
 }
 
-.cargoCard__column{
+.cargoCard__column, .fuelCard__column{
     width: 80%;
 }
 .cargoCard__list{

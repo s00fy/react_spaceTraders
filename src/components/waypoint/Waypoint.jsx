@@ -1,5 +1,6 @@
 import {useEffect, useState } from 'react';
 import MarketRender from '../market/MarketRender';
+import ShipyardRender from '../shipyard/ShipyardRender';
 
 const Waypoint = ({ wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
 
@@ -35,7 +36,7 @@ const Waypoint = ({ wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
           });
         }, 500);
       } catch (error) {
-        console.error('Error fetching waypoints info:', error);
+        console.error('Error fetching current waypoint info:', error);
       }
     };
   
@@ -49,13 +50,12 @@ const Waypoint = ({ wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
 
       return(
         <>
-            {wpInfo.traits ? (
+            {wpInfo && wpInfo.traits ? (
             <div className='wp__container'>
                 <div className='wp__id'>
                   <img src="./img/icons/jupiter.png" onClick={refetch} className='wp__icon'/>
-                  <p className='wp__symbol'>{wpInfo.symbol}</p>
+                  <p className='wp__symbol'>{wpInfo.symbol} ✼ {wpInfo.type}</p>
                 </div>
-                <p className='wp__type'>{wpInfo.type}</p>
                 <div className='wp__traitsContainer'>
                     {wpInfo.traits.map((trait, index) => (
                     <p className='wp__traits' key={index}>
@@ -68,12 +68,12 @@ const Waypoint = ({ wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
                 <p>scanning your current waypoint...</p>
             )}
 
-            {wpInfo && isMarketplace && (
+            {wpInfo && isMarketplace ? (
                 <MarketRender wpSymbol={wpSymbol} shipCargo={shipCargo} systemSymbol={systemSymbol} shipSymbol={shipSymbol} />
-            )}
-            {wpInfo && isShipyard && (
-                <button>Show ShipYard</button>
-            )}
+            ) : (<p>No marketplace here</p>) }
+            {wpInfo && isShipyard ? (
+                <ShipyardRender systemSymbol={systemSymbol} wpSymbol={wpSymbol} />
+            ) : <p>No shipyard here</p> }
 
         </>
       );

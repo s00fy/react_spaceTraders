@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import ShipStatus from './ShipStatus';
-import SystemWaypoints from './SystemWaypoints';
-import Waypoint from './Waypoint';
-import Cargo from '../ships/Cargo';
-import Fuel from '../ships/Fuel';
-import '../../style/shipNav.css';
+import SystemWaypoints from '../SystemWaypoints';
+import Waypoint from '../../waypoint/Waypoint';
+import Cargo from '../../ships/Cargo';
+import Fuel from '../../ships/Fuel';
+import '../../../style/shipNav.css';
 
 const ShipNav = (props) => {
     const [ship, setShip] = useState([]);
@@ -90,8 +90,8 @@ const ShipNav = (props) => {
           setError(data.error.message);
         }else if (data.data.extraction){
           setError(null);
-          setMiningYield(data.data.extraction.yield);
           setJustMined(data.data);
+          setMiningYield(data.data.extraction.yield);
           setUpdateCargo(data.data.cargo);
         }
       } catch (error) {
@@ -119,13 +119,6 @@ const ShipNav = (props) => {
                 </div>
                 <div className='nav__status'>
                   <ShipStatus shipSymbol={ship.symbol} shipNav={ship.nav}></ShipStatus>
-                </div>
-              </div>
-              <div className='shipInfos'>
-                <div className="shipInfos__stuff">
-                  <Cargo stuff={updateCargo} />
-                  <Fuel fuel={ship.fuel} shipSymbol={ship.symbol} />
-                </div>
                 <div className='shipInfos__fm'>
                   <p className='shipInfos__fm__txtCurrent'>Your current flight Mode : {flightMode.flightMode} </p>
                   <p className='shipInfos__fm__txtChange'>Change flight Mode to : </p>
@@ -149,6 +142,13 @@ const ShipNav = (props) => {
                     </div>
                   </div>
                 </div>
+                </div>
+              </div>
+              <div className='shipInfos'>
+                <div className="shipInfos__stuff">
+                  <Cargo stuff={updateCargo} />
+                  <Fuel fuel={ship.fuel} shipSymbol={ship.symbol} />
+                </div>
               </div>
             </div>
           </div>
@@ -167,13 +167,13 @@ const ShipNav = (props) => {
 
             </div>
             <div className='nav__txt'>
-              <Waypoint wpSymbol={ship.nav.waypointSymbol} shipCargo={ship.cargo} systemSymbol={ship.nav.systemSymbol} shipSymbol={ship.symbol} />            
+              <Waypoint wpSymbol={ship.nav.waypointSymbol} shipCargo={updateCargo} systemSymbol={ship.nav.systemSymbol} shipSymbol={ship.symbol} />            
             </div>
               <button className='nav__btn__wp' onClick={handleClickWaypointsList}>Scan nearby waypoints ↓</button>
             </div>
             </div>
             {shown ? (
-              <SystemWaypoints systemSymbol={ship.nav.systemSymbol} speed={ship.engine.speed} flightMode={flightMode.flightMode} shipSymbol={ship.symbol} shipY={ship.nav.route.origin.y} shipX={ship.nav.route.origin.x} status={ship.nav.status} />
+              <SystemWaypoints systemSymbol={ship.nav.systemSymbol} speed={ship.engine.speed} flightMode={flightMode.flightMode} shipSymbol={ship.symbol} shipY={ship.nav.route.destination.y} shipX={ship.nav.route.destination.x} status={ship.nav.status} />
             ) : (null)}
           </>
         ) : (

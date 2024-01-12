@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import calculateDistance from '../../utils/getDistanceWaypoints';
-import GetTimeWaypoints from '../../utils/getTimeWaypoints';
+import calculateDistance from '../../utils/GetDistanceWaypoints';
+import GetTimeWaypoints from '../../utils/GetTimeWaypoints';
+import getFuelWaypoints from '../../utils/GetFuelWaypoints';
 import '../../style/systemwp.css';
+import RouteDetails from './RouteDetails';
 
 const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flightMode, speed }) => {
 
@@ -10,27 +12,25 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
   const theShipSymbol = shipSymbol;
   const flight =flightMode;
   const [error, setError] = useState(null);
+  const [isTransitionning, setIsTransitionning] = useState(null);
 
+  
   useEffect(() => {
-
       const fetchData = async () => {
       const options = {
+        endpoint: `systems/${systemSymbol}/waypoints?limit=20`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        parameters: {
-          limit: '20',
-        },
       };
       try {
-        const response = await fetch(`https://api.spacetraders.io/v2/systems/${systemSymbol}/waypoints?limit=20`, options);
+        const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
         const data = await response.json();
         if (data.error) {
           setError(data.error.message);
         }
         setWaypointsList(data.data);
-        
       } catch (error) {
         console.error('Error fetching system waypoints info:', error);
       }
@@ -44,7 +44,9 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
     setError(null);
   }
 
-  const waypointsDisplay = waypointsList.map((waypoints, index) =>{
+  
+  const waypointsDisplay = waypointsList.map((waypoints) =>{
+    let distance = calculateDistance(shipX, shipY, waypoints.x, waypoints.y );
     return (
       <div  key={waypoints.symbol} className='sysWp' >
       {
@@ -52,10 +54,12 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
         <div className='sysWp__container'>
           <div className='sysWp__id'>
             <p className='sysWp__title'>{ waypoints.symbol }</p>
-            <GetTimeWaypoints speed={speed} flight={flight} dist={ calculateDistance(shipX, shipY, waypoints.x, waypoints.y ) } />
+            <GetTimeWaypoints speed={speed} flight={flight} dist={ distance } />
           </div>
           <p className='sysWp__type'>{ waypoints.type }</p>
-          <p className='sysWp__dist'>dist : { calculateDistance(shipX, shipY, waypoints.x, waypoints.y ) }</p>
+          <p className='sysWp__dist'>dist : { distance }</p>
+          <p className='sysWp__fuelCost'>Fuel : -{ getFuelWaypoints(flight, distance) } fuel</p>
+
           {waypoints.traits.map(trait => (
             <p className='sysWp__traits' key={trait.symbol}>
               {trait.symbol}
@@ -89,6 +93,8 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
         const data = await response.json();
         if (data.error) {
           setError(data.error.message);
+        }else{
+          setIsTransitionning(data.data);
         }
       } catch (error) {
         console.error('Error fetching navigate info:', error);
@@ -100,8 +106,9 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
       <>
        {waypointsList ? (
         <>
-          <div className='system__infos' >You can only extract resources in : ASTEROID, ENGINEERED_ASTEROID, ASTEROID_BASE</div>
-          {error && <p className='fetch__error' onClick={handleError}>{error}</p>}
+          <div className='system__infos' >You can only extract resources in : ASTEROID, ENGINEERED_ASTEROID and ASTEROID_BASE</div>
+          {error && <p className='fetch__error notif' onClick={handleError}>{error}</p>}
+          {isTransitionning && <RouteDetails nav={isTransitionning} /> }
           <div className='system__list'>{waypointsDisplay}</div>
         </>
         ) : (

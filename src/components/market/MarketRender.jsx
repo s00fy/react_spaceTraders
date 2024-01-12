@@ -4,7 +4,7 @@ import '../../style/market.css';
 
 const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
     const token = localStorage.getItem('token');
-    const [marketInfo, setMarketInfo] = useState([]);
+    const [marketInfo, setMarketInfo] = useState(null);
     const [canSell, setCanSell] = useState(false);
     const [good, setGood] = useState(null);
 
@@ -29,12 +29,14 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
             console.error('Error fetching market info:', error);
           }
         };
-    
-        fetchData();
-      }, [wpSymbol, systemSymbol, token]);
+
+        if (!marketInfo) {
+          fetchData();
+        }
+      }, [wpSymbol, systemSymbol, token, marketInfo]);
 
 
-      const handleSingleGood = (good) => {
+      const handleSingleGoodBackup = (good) => {
         setCanSell(false);
         setGood(good);
         shipCargo.inventory.forEach(item => {
@@ -44,9 +46,25 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
         });
       }
 
-      const displayGoods = marketInfo.tradeGoods ? (
+      const handleSingleGood = (selectedGood) => {
+        setCanSell(false);
+        setGood((prevGood) => {
+          // Use the selectedGood if it's provided, otherwise use the previous state
+          const currentGood = selectedGood || prevGood;
+      
+          shipCargo.inventory.forEach((item) => {
+            if (item.symbol === currentGood) {
+              setCanSell(true);
+            }
+          });
+      
+          return currentGood;
+        });
+      };
+
+      const displayGoods = marketInfo && marketInfo.tradeGoods ? (
         marketInfo.tradeGoods.map((good, index) => (
-          <li key={index} className="marketList__item" onClick={() => handleSingleGood(good)}>
+          <li key={index} className="marketList__item" onClick={() => handleSingleGood(good.symbol)}>
             <p className="good__name">{good.symbol}</p>
             <div className="good__price">
               <div className="good__buy">
@@ -66,8 +84,8 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
     
       return(
         <div className="market">
-        { marketInfo.tradeGoods ?
-          <ul className="marketList">{displayGoods}</ul> : <p>No marketplace here, good luck ! :) </p>
+        { marketInfo ?
+          <ul className="marketList">{displayGoods}</ul> : <p>Searching for marketplace... </p>
         }
         { good ?
           <GoodModal good={good} sell={canSell} shipCargo={shipCargo} shipSymbol={shipSymbol} />
