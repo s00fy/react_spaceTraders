@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Fuel from './Fuel';
 import Cargo from './Cargo';
+import React from 'react';
 
 const ShipDetails = ({ship}) => {
     const cargoRef = useRef(null);

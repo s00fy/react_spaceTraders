@@ -1,4 +1,5 @@
 import { useAuthContext } from '../auth/authContext';
+import React from 'react';
 
 const Money = () => {
     const auth = useAuthContext();

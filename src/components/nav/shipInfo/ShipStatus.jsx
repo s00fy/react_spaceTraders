@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import RouteDetails from "../RouteDetails";
 
@@ -49,7 +50,6 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
           );
           const data = await response.json();
           setIsStateChanged(data.data);
-          console.log(data.data.nav.status);
           } catch (error) {
             console.error('Error changing the ship status :', error);
           }

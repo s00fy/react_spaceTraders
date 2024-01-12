@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import ShipNav from "./shipInfo/ShipNav";
 import Header from "../user/Header";
@@ -21,14 +22,13 @@ const NavigationRender = () => {
         const response = await fetch('https://api.spacetraders.io/v2/my/ships', options);
         const data = await response.json();
         setShipsRender(data.data);
-        console.log('data fetch');
       } catch (error) {
         console.error('Error fetching ships info:', error);
       }
     };
 
     fetchData();
-  }, [token]); // This runs once when the component mounts
+  }, [token]);
     const shipsDisplay = shipsRender.map((ship, index) =>{
     return (
       <option className='selectShip__option' key={index} value={ship.symbol}>{ship.symbol}</option>

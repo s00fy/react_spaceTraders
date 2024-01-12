@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import ShipDetails from './ShipDetails';
 import '../../style/shipDetails.css';
+import React from 'react';
 
 
-const Ship = (props) => {
+const Ship = ({ship}) => {
   const [isShown, setIsShown] = useState(false);
-  const shipsInfo = props.ship;
+  const shipsInfo = ship;
  
   //toggle visibility of a ship Details
   const handleClick = () => {

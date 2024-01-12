@@ -1,8 +1,9 @@
 import {useEffect, useState } from 'react';
 import MarketRender from '../market/MarketRender';
 import ShipyardRender from '../shipyard/ShipyardRender';
+import React from 'react';
 
-const Waypoint = ({ wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
+const Waypoint = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
 
     const token = localStorage.getItem("token");
     const [wpInfo, setWpInfo] = useState([]);

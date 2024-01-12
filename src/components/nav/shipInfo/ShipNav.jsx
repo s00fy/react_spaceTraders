@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import ShipStatus from './ShipStatus';
 import SystemWaypoints from '../SystemWaypoints';
@@ -6,7 +7,7 @@ import Cargo from '../../ships/Cargo';
 import Fuel from '../../ships/Fuel';
 import '../../../style/shipNav.css';
 
-const ShipNav = (props) => {
+const ShipNav = ( {shipSymbol} ) => {
     const [ship, setShip] = useState([]);
     const token = localStorage.getItem('token');
     const [ shown, setShown] = useState(false);
@@ -27,7 +28,7 @@ const ShipNav = (props) => {
   
         try {
           const response = await fetch(
-            `https://api.spacetraders.io/v2/my/ships/${props.shipSymbol}`,
+            `https://api.spacetraders.io/v2/my/ships/${shipSymbol}`,
             options
           );
           const data = await response.json();
@@ -40,7 +41,7 @@ const ShipNav = (props) => {
       };
   
       fetchData();
-    }, [props.shipSymbol, token]);
+    }, [shipSymbol, token]);
 
     const handleClickWaypointsList = () => {
      setShown((current) => !current);
@@ -83,7 +84,6 @@ const ShipNav = (props) => {
       try {
         const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
         const data = await response.json();
-        console.log(data);
         if (data.error) {
           setJustMined(null);
           setMiningYield(null);
@@ -160,8 +160,8 @@ const ShipNav = (props) => {
               }
               { justMined ? 
               <>
-                <p className='fetch__error' onClick={handleError}>You just mined {miningYield.units} {miningYield.symbol}</p>
-                <p className='fetch__error' onClick={handleError}>You have to wait {justMined.cooldown.totalSeconds}s to mine again.</p>
+                <p className='fetch__success' onClick={handleError}>You just mined {miningYield.units} {miningYield.symbol}</p>
+                <p className='fetch__success' onClick={handleError}>You have to wait {justMined.cooldown.totalSeconds}s to mine again.</p>
               </>:null
               }
 

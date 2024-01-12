@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import calculateDistance from '../../utils/GetDistanceWaypoints';
 import GetTimeWaypoints from '../../utils/GetTimeWaypoints';
@@ -5,7 +6,7 @@ import getFuelWaypoints from '../../utils/GetFuelWaypoints';
 import '../../style/systemwp.css';
 import RouteDetails from './RouteDetails';
 
-const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flightMode, speed }) => {
+const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flightMode, speed}) => {
 
   const [waypointsList, setWaypointsList] = useState([]);
   const token = localStorage.getItem("token");

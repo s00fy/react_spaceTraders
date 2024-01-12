@@ -1,3 +1,4 @@
+import React from 'react';
 import ShipRender from './components/ships/ShipRender';
 import NavigationRender from './components/nav/NavigationRender';
 import ErrorPage from "./routes/error_page";

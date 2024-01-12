@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import GoodModal from "./GoodModal";
 import '../../style/market.css';
+import { useCallback } from "react";
+import React from 'react';
 
-const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
+const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
     const token = localStorage.getItem('token');
     const [marketInfo, setMarketInfo] = useState(null);
     const [canSell, setCanSell] = useState(false);
@@ -35,36 +37,22 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
         }
       }, [wpSymbol, systemSymbol, token, marketInfo]);
 
-
-      const handleSingleGoodBackup = (good) => {
-        setCanSell(false);
-        setGood(good);
-        shipCargo.inventory.forEach(item => {
-          if (item.symbol === good) {
-            setCanSell(true);
-          }
-        });
-      }
-
-      const handleSingleGood = (selectedGood) => {
+      const handleSingleGood = useCallback((selectedGood) => {
         setCanSell(false);
         setGood((prevGood) => {
-          // Use the selectedGood if it's provided, otherwise use the previous state
           const currentGood = selectedGood || prevGood;
-      
           shipCargo.inventory.forEach((item) => {
-            if (item.symbol === currentGood) {
+            if (item.symbol === currentGood.symbol) {
               setCanSell(true);
             }
           });
-      
-          return currentGood;
+          return selectedGood;
         });
-      };
+      }, [good, shipCargo.inventory, canSell]);
 
       const displayGoods = marketInfo && marketInfo.tradeGoods ? (
         marketInfo.tradeGoods.map((good, index) => (
-          <li key={index} className="marketList__item" onClick={() => handleSingleGood(good.symbol)}>
+          <li key={index} className="marketList__item" onClick={() => handleSingleGood(good)}>
             <p className="good__name">{good.symbol}</p>
             <div className="good__price">
               <div className="good__buy">
@@ -89,8 +77,7 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo }) => {
         }
         { good ?
           <GoodModal good={good} sell={canSell} shipCargo={shipCargo} shipSymbol={shipSymbol} />
-        
-        : null}
+        : null }
         </div>
       )
 

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import React from 'react';
 
 const ShipyardRender = ({systemSymbol, wpSymbol}) => {
     const token = localStorage.getItem("token");
@@ -10,7 +11,6 @@ const ShipyardRender = ({systemSymbol, wpSymbol}) => {
     const sendRequest = useCallback(async (shipType) => {
         if (isSending) return;
         setIsSending(true);
-        console.log('sendRequest working');
       const options = {
           method: "POST",
           endpoint: `my/ships`,
@@ -24,8 +24,6 @@ const ShipyardRender = ({systemSymbol, wpSymbol}) => {
         try {
           const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
           const data = await response.json();
-          console.log('fetch request');
-          console.log(data);
           if(data.data.agent){
             setSuccessfullyPurchased(true);
         }

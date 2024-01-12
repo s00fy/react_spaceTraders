@@ -1,8 +1,8 @@
+import React from 'react';
 import '../../style/cargo.css';
-const Cargo = (props)=>{
- 
-    const cargo = props.stuff;
-    
+
+const Cargo = ({stuff})=>{
+    const cargo = stuff;
     const inventoryDisplay = cargo.inventory.map((invent, index)=>{
       return(
         <div key={index}>

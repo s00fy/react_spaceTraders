@@ -1,5 +1,6 @@
 import '../../style/fuel.css';
 import { useState } from 'react';
+import React from 'react';
 
 const Fuel = ({fuel, shipSymbol})=>{
   const [error, setError] = useState(null);
@@ -30,6 +31,7 @@ const Fuel = ({fuel, shipSymbol})=>{
 
     const handleError = () => {
       setError(null);
+      setSuccessRefuel(null);
     }
 
     return(
@@ -44,7 +46,7 @@ const Fuel = ({fuel, shipSymbol})=>{
           </div>
           <div className='refuel'>
             <button className='refuel__btn' onClick={clickHandlerRefuel}>Refuel</button>
-            <p className='refuel__tooltip'>You need to be in a marketplace AND docked in order to be able to refuel</p>
+            <p className='refuel__tooltip' >You need to be in a marketplace AND docked in order to be able to refuel</p>
           </div>
 
           {error && <p className='fetch__error' onClick={handleError}>{error}</p>}

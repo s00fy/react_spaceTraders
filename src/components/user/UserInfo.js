@@ -6,7 +6,6 @@ import './../../style/user.css';
 const UserInfo = () => {
   const auth = useAuthContext();
   const navigate = useNavigate();
-  // Check if auth.user is already an object or parse it as JSON
   const user = typeof auth.user === 'object' ? auth.user : JSON.parse(auth.user || '{}');
 
   const handleLogout = () => {
