@@ -52,7 +52,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
           console.error('Error fetching goods info:', error);
         }
       setIsSending(false);
-    }, [isSending, good.symbol, shipSymbol, token]);
+    }, [isSending, shipSymbol, token]);
 
     const handleSingleGood = useCallback(() => {
       setCanSell(false);
@@ -66,7 +66,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
   
     useEffect(() => {
       handleSingleGood();
-    }, [handleSingleGood, canSell]);
+    }, [handleSingleGood, canSell, good.symbol]);
 
     
     const handleError = () => {
