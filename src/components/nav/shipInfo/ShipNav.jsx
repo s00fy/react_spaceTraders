@@ -81,6 +81,7 @@ const ShipNav = ( {shipSymbol} ) => {
           Authorization: `Bearer ${token}`,
         },
       };
+      
       try {
         const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
         const data = await response.json();
@@ -160,8 +161,7 @@ const ShipNav = ( {shipSymbol} ) => {
               }
               { justMined ? 
               <>
-                <p className='fetch__success' onClick={handleError}>You just mined {miningYield.units} {miningYield.symbol}</p>
-                <p className='fetch__success' onClick={handleError}>You have to wait {justMined.cooldown.totalSeconds}s to mine again.</p>
+                <p className='fetch__success' onClick={handleError}>You just mined {miningYield.units} {miningYield.symbol}, you have to wait {justMined.cooldown.totalSeconds}s to mine again.</p>
               </>:null
               }
 
