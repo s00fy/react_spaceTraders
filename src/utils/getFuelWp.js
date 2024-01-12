@@ -1,4 +1,4 @@
-function getFuelWaypoints(flightMode, distance) {
+function getFuelWp(flightMode, distance) {
     let fuelCost = null;
     switch (flightMode) {
         case 'CRUISE':
@@ -20,4 +20,4 @@ function getFuelWaypoints(flightMode, distance) {
     return(fuelCost);
 }
 
-export default getFuelWaypoints;
+export default getFuelWp;

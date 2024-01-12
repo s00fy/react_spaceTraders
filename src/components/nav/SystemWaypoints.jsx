@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import calculateDistance from '../../utils/getDistanceWaypoints';
 import GetTimeWaypoints from '../../utils/getTimeWaypoints';
-import getFuelWaypoints from '../../utils/getFuelWaypoints';
+import getFuelWp from '../../utils/getFuelWp';
 import '../../style/systemwp.css';
 import RouteDetails from './RouteDetails';
 
@@ -59,7 +59,7 @@ const SystemWaypoints = ({systemSymbol, status, shipSymbol, shipX, shipY, flight
           </div>
           <p className='sysWp__type'>{ waypoints.type }</p>
           <p className='sysWp__dist'>dist : { distance }</p>
-          <p className='sysWp__fuelCost'>Fuel : -{ getFuelWaypoints(flight, distance) } fuel</p>
+          <p className='sysWp__fuelCost'>Fuel : -{ getFuelWp(flight, distance) } fuel</p>
 
           {waypoints.traits.map(trait => (
             <p className='sysWp__traits' key={trait.symbol}>
