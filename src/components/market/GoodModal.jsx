@@ -66,7 +66,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
   
     useEffect(() => {
       handleSingleGood();
-    }, [handleSingleGood, canSell, good.symbol]);
+    }, [handleSingleGood, canSell]);
 
     
     const handleError = () => {
