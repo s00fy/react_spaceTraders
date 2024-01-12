@@ -38,6 +38,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
         try {
           const response = await fetch(`https://api.spacetraders.io/v2/${options.endpoint}`, options);
           const data = await response.json();
+          console.log(data);
           if (data.error) {
             setUpdateCargo([]);
             setJustSold(null);
@@ -51,7 +52,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
           console.error('Error fetching goods info:', error);
         }
       setIsSending(false);
-    }, [isSending, good.symbol]);
+    }, [isSending, good.symbol, shipSymbol, token]);
 
     const handleSingleGood = useCallback(() => {
       setCanSell(false);
@@ -60,7 +61,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
           setCanSell(true);
         }
       });
-    }, [good, shipCargo.inventory, canSell]);
+    }, [good, shipCargo.inventory]);
     
   
     useEffect(() => {
@@ -83,7 +84,7 @@ const GoodModal = ({good, shipSymbol, sell, shipCargo}) => {
             <button className="goodModal__btn" disabled={isSending} onClick={() => sendRequest(buyRef, good.symbol )} ref={buyRef}>
               Buy
               </button>
-              {canSell ? <button disabled={isSending} onClick={() => sendRequest(sellRef)} className="goodModal__btn" ref={sellRef}>Sell</button> : null }
+              {canSell ? <button disabled={isSending} onClick={() => sendRequest(sellRef, good.symbol)} className="goodModal__btn" ref={sellRef}>Sell</button> : null }
           </div>
               {error && <p className='fetch__error' onClick={handleError}>{error}</p>}
               {justBought && updateCargo &&

@@ -114,7 +114,7 @@ const ShipNav = ( {shipSymbol} ) => {
             <div className='nav__idColumn'>
               <div className='nav__idColumn__firstRow'>
                 <div className='nav__idColumn__name'>
-                  <img src="./img/icons/spaceship.svg" className='nav__shipIcon'/>
+                  <img src="./img/icons/spaceship.svg" alt='' className='nav__shipIcon'/>
                   <p className='nav__id'>{ship.symbol} ✼ {ship.frame.name}</p>
                 </div>
                 <div className='nav__status'>

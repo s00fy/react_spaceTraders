@@ -1,4 +1,4 @@
-import {useEffect, useState } from 'react';
+import {useEffect, useState, useCallback } from 'react';
 import MarketRender from '../market/MarketRender';
 import ShipyardRender from '../shipyard/ShipyardRender';
 import React from 'react';
@@ -10,7 +10,7 @@ const Waypoint = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
     const [isMarketplace, setIsMarketplace] = useState(false);
     const [isShipyard, setIsShipyard] = useState(false);
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
       const options = {
         endpoint: `/systems/${systemSymbol}/waypoints/${wpSymbol}`,
         headers: {
@@ -24,6 +24,11 @@ const Waypoint = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
           `https://api.spacetraders.io/v2${options.endpoint}`,
           options
         );
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
         const data = await response.json();
         setWpInfo(data.data);
         setTimeout(() => {
@@ -39,22 +44,19 @@ const Waypoint = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
       } catch (error) {
         console.error('Error fetching current waypoint info:', error);
       }
-    };
+    }, [wpSymbol, systemSymbol, token]);
+  
   
     useEffect(() => {
       fetchData();
-    }, [wpSymbol, systemSymbol, token]);
-
-      const refetch = () => {
-        fetchData();
-      }
+    }, [wpSymbol, systemSymbol, fetchData, token]);
 
       return(
         <>
             {wpInfo && wpInfo.traits ? (
             <div className='wp__container'>
                 <div className='wp__id'>
-                  <img src="./img/icons/jupiter.png" onClick={refetch} className='wp__icon'/>
+                  <img src="./img/icons/jupiter.png" alt='' className='wp__icon'/>
                   <p className='wp__symbol'>{wpInfo.symbol} ✼ {wpInfo.type}</p>
                 </div>
                 <div className='wp__traitsContainer'>

@@ -48,7 +48,7 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
           });
           return selectedGood;
         });
-      }, [good, shipCargo.inventory, canSell]);
+      }, [shipCargo.inventory]);
 
       const displayGoods = marketInfo && marketInfo.tradeGoods ? (
         marketInfo.tradeGoods.map((good, index) => (
@@ -56,11 +56,11 @@ const MarketRender = ({wpSymbol, systemSymbol, shipSymbol, shipCargo}) => {
             <p className="good__name">{good.symbol}</p>
             <div className="good__price">
               <div className="good__buy">
-                <img src="./img/icons/loan.svg" className='good__icon'/>
+                <img src="./img/icons/loan.svg" alt="" className='good__icon'/>
                 <p className="good__buyPrice"> Buy : {good.purchasePrice}</p>
               </div>
               <div className="good__sell">
-                <img src="./img/icons/profit.svg" className='good__icon'/>
+                <img src="./img/icons/profit.svg" alt="" className='good__icon'/>
                 <p className="good__sellPrice"> Sell : {good.sellPrice}</p>
               </div>
             </div>

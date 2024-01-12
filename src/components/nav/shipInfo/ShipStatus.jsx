@@ -4,7 +4,7 @@ import RouteDetails from "../RouteDetails";
 
 const ShipStatus = ({shipNav, shipSymbol}) => {
     const token = localStorage.getItem('token');
-    const [isStateChanged, setIsStateChanged] = useState('s');
+    const [isStateChanged, setIsStateChanged] = useState('');
     const [isDocked, setIsDocked] = useState(null);
     
     useEffect(() => {
@@ -13,10 +13,10 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
       }else{
         setIsDocked(false);
       }
-        isDocked === false ? setIsDocked(false) : setIsDocked(true);
-        setIsStateChanged(isStateChanged);
-        setIsDocked((current) => !current);
-      }, [isStateChanged]);
+      //dk why but it's not working without it
+      isDocked ? setIsDocked(false) : setIsDocked(true);
+      setIsDocked((current) => !current);
+      }, [isStateChanged, shipNav.status, isDocked ]);
     
       const handleClickStatus = async () => {
         let options = {};
@@ -30,7 +30,8 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
               Authorization: `Bearer ${token}`,
             },
           };
-          setIsDocked(false);
+          setIsDocked(true);
+          console.log('isDocked true');
         } else {
           options = {
             endpoint: `my/ships/${shipSymbol}/orbit`,
@@ -41,7 +42,8 @@ const ShipStatus = ({shipNav, shipSymbol}) => {
               Authorization: `Bearer ${token}`,
             },
           };
-          setIsDocked(true);
+          setIsDocked(false);
+          console.log('isDocked false');
         }
         try {
           const response = await fetch(
