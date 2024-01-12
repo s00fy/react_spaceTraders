@@ -53,6 +53,7 @@ export const AuthContextProvider = ({ children }) => {
     setUser(null);
     setIsValid(false);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
   
 
