@@ -89,7 +89,7 @@ const ShipyardRender = ({systemSymbol, wpSymbol}) => {
         <div className="shipyard">
             {shipyardInfo ?
             <>
-                {successfullyPurchased ? <p className="fetch__success" onClick={handleError}> You just successfully purchased a ship ! </p> : null }
+                {successfullyPurchased ? <p className="fetch__success notif shipyard__error" onClick={handleError}> You just successfully purchased a ship ! </p> : null }
                 {error ? <p className="fetch__error notif shipyard__error" onClick={handleError}> {error} </p> : null }
                 <ul className="shipyardList">
                     {displayShipsToSell}
