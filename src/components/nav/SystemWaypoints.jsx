@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import calculateDistance from '../../utils/getDistanceWaypoints';
-import GetTimeWaypoints from '../../utils/GetTimeWaypoints';
-import getFuelWaypoints from '../../utils/GetFuelWaypoints';
+import GetTimeWaypoints from '../../utils/getTimeWaypoints';
+import getFuelWaypoints from '../../utils/getFuelWaypoints';
 import '../../style/systemwp.css';
 import RouteDetails from './RouteDetails';
 
