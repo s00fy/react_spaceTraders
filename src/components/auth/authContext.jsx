@@ -5,7 +5,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(localStorage.getItem("user"));
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   const login = async (token) => {
     const options = {

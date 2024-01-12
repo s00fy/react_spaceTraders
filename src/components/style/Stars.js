@@ -51,6 +51,7 @@ const Stars = () => {
   }, [starsRef]);
 
   return (
+    <>
     <div id="stars" ref={starsRef}>
       {stars.map((star, index) => (
         <span
@@ -66,6 +67,11 @@ const Stars = () => {
         />
       ))}
     </div>
+    <img className="shapeTop" src="/img/form.svg" alt="" />
+    <span className='bottomStyleLeft'></span>
+    <span className='bottomStyleRight'></span>
+    <span className='bottomLine'></span>
+    </>
   );
 }
 

@@ -38,21 +38,12 @@ const router = createBrowserRouter([
     element: <UserInfo />,
     errorElement: <ErrorPage />,
   },
-/*   {
-    path: "/mine",
-    element: <Mining />,
-    errorElement: <ErrorPage />,
-  }, */
 ]);
 
 function App() {
   return (
     <AuthContextProvider>
     <Stars />
-    <img className="shapeTop" src="form.svg" alt="" />
-    <span className='bottomStyleLeft'></span>
-    <span className='bottomStyleRight'></span>
-    <span className='bottomLine'></span>
     <main className="content">
       <RouterProvider router={router} >
       </RouterProvider>

@@ -3,13 +3,21 @@ import { useState, useEffect } from 'react';
 import ShipNav from "./shipInfo/ShipNav";
 import Header from "../user/Header";
 import '../../style/nav.css';
+import { useAuthContext } from '../auth/authContext';
+import { useNavigate } from 'react-router';
 
 const NavigationRender = () => {
   const [shipsRender, setShipsRender] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const token = localStorage.getItem("token");
-
+  const auth = useAuthContext();
+  const navigate = useNavigate();
+  
+  
   useEffect(() => {
+    if (auth.isValid === false ) {
+      navigate('/');
+    }
     const fetchData = async () => {
       const options = {
         headers: {
@@ -28,7 +36,7 @@ const NavigationRender = () => {
     };
 
     fetchData();
-  }, [token]);
+  }, [token, auth.isValid, navigate]);
     const shipsDisplay = shipsRender.map((ship, index) =>{
     return (
       <option className='selectShip__option' key={index} value={ship.symbol}>{ship.symbol}</option>

@@ -2,11 +2,19 @@ import { useAuthContext } from '../auth/authContext';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import './../../style/user.css';
+import { useEffect } from 'react';
 
 const UserInfo = () => {
   const auth = useAuthContext();
   const navigate = useNavigate();
   const user = typeof auth.user === 'object' ? auth.user : JSON.parse(auth.user || '{}');
+
+  
+  useEffect(() => {
+    if (auth.isValid === false ) {
+      navigate('/');
+    }
+  }, [auth.isValid, navigate]);
 
   const handleLogout = () => {
     auth.logout();

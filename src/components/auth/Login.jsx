@@ -14,7 +14,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         auth.login(token);
-        if (token !== null) {
+        if (token === null) {
             if (auth.userToken === token) {
                 setErrorMessage(null);
                 navigate('/fleet');
